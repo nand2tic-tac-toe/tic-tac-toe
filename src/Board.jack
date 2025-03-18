@@ -1,0 +1,18 @@
+class Board {
+    function void main() {
+        do Screen.clearScreen(); // Очистка экрана
+        do drawBoard();         // Отрисовка игрового поля
+        return;
+    }
+
+    method void drawBoard() {
+        // Рисование вертикальных линий
+        do Screen.drawLine(170, 0, 170, 255); // Вертикальная линия 1
+        do Screen.drawLine(340, 0, 340, 255); // Вертикальная линия 2
+
+        // Рисование горизонтальных линий
+        do Screen.drawLine(0, 85, 511, 85);   // Горизонтальная линия 1
+        do Screen.drawLine(0, 170, 511, 170); // Горизонтальная линия 2
+        return;
+    }
+}
