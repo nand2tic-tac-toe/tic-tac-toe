@@ -1,0 +1,7 @@
+# Ignore Visual Studio folder
+.vs/
+
+# Other 
+bin/
+obj/
+*.log
