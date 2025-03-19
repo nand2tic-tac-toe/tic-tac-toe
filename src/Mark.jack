@@ -7,7 +7,6 @@ class Mark {
     constructor Mark new (int t) 
     {
         let type = t;
-        
         let width = 16;
         let height = 16;
         

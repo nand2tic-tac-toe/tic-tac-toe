@@ -3,10 +3,25 @@ class Board {
     field Array boardArray;
     // Количество пустых клеток
     field int emptyCellsCount;
+    // Состояние поля
+    field boolean isPlayerWin;
+    field boolean isDraw;
 
     constructor Board new(int x,int y) {		
 		let boardArray = Array.new(9);
 		return this;
+	}
+
+    method boolean isWin() {
+		return isPlayerWin;
+	}
+	
+	method boolean isDraw() {
+		return isDraw;
+	}
+
+    method int getEmptyCellsCount() {
+		return emptyCellsCount;
 	}
 
     method void dispose() {
