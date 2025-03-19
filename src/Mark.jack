@@ -1,0 +1,8 @@
+class Mark {
+    // 0: нолик, 1: крестик
+    field int type; // 0: naught, 1: cross
+
+    method int getType() {
+		return type;
+	}
+}
