@@ -7,18 +7,10 @@ class Mark {
     constructor Mark new (int t) 
     {
         let type = t;
-
-        if (t = 1)
-        {
-            let width = 16;
-            let height = 16;
-        }
-        else
-        {
-            let width = 16;
-            let height = 16;
-        }
-
+        
+        let width = 16;
+        let height = 16;
+        
         return this;
     }
 
