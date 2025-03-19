@@ -1,6 +1,26 @@
 class Mark {
     // 1: нолик, 2: крестик
     field int type;
+    field int height;
+    field int width;
+
+    constructor Mark new (int t) 
+    {
+        let type = t;
+
+        if (t = 1)
+        {
+            let width = 16;
+            let height = 16;
+        }
+        else
+        {
+            let width = 16;
+            let height = 16;
+        }
+
+        return this;
+    }
 
     method int getType() {
 		return type;
