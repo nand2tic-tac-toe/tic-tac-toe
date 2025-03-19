@@ -1,4 +1,29 @@
 class Board {
+    // 0: пустая клетка, 1: нолик, 2: крестик
+    field Array boardArray;
+    // Количество пустых клеток
+    field int emptyCellsCount;
+
+    constructor Board new(int x,int y) {		
+		let boardArray = Array.new(9);
+		return this;
+	}
+
+    method void dispose() {
+		do Memory.deAlloc(boardArray);
+		return;
+	}
+
+    method void clear() {
+		var int i;
+		let emptyCellsCount = 9;
+		while(i < 9) {
+			let boardArray[i] = 0;
+			let i = i + 1;
+		}
+		return;
+	}
+
     function void main() {
         do Screen.clearScreen(); // Очистка экрана
         do drawBoard();         // Отрисовка игрового поля
