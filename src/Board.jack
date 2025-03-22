@@ -4,14 +4,14 @@ class Board {
     // Количество пустых клеток
     field int emptyCellsCount;
     // Состояние поля
-    field int winVariable; // 0 - ряд, 1-столбик, 2 - верхняя диаг, 3 - нижняя диагональ
+    // 0 - ряд, 1-столбик, 2 - верхняя диаг, 3 - нижняя диагональ
+    field int winVariable; 
     field boolean isPlayerWin;
     field boolean isDraw;
-    field int winRow,winCol; // по каким рядам/столбцам победа
-    // параметры
+    // По каким рядам/столбцам победа
+    field int winRow, winCol; 
+    // Параметры
     field int boardX, boardY, boardSize, thickness, cellSize, finishLineThickness;
-
-
 
     constructor Board new(int x,int y) {
         let boardArray = Array.new(9);	
@@ -21,22 +21,24 @@ class Board {
 		let thickness = 4;
 		let finishLineThickness = 4;
 		let cellSize = boardSize/3;
+
 		do clear();
 		do drawBoard();
+
 		return this;
 	}
 
     method void drawWin() {
-		if(winVariable=0) {
+		if (winVariable = 0) {
 			do rowWin(winRow);
 		}
-		if(winVariable=1) {
+		if (winVariable = 1) {
 			do colWin(winCol);
 		}
-		if(winVariable=2) {
+		if (winVariable = 2) {
 			do topDiagonalWin();
 		}
-		if(winVariable =3) {
+		if (winVariable = 3) {
 			do botDiagonalWin();
 		}
 		return;
@@ -55,7 +57,7 @@ class Board {
 	}
 
 
-    //чистим ресурсики (доску, память)
+    // Чистим ресурсики (доску, память)
     method void dispose() {
         do Screen.setColor(false);
 		do Screen.drawRectangle(boardX,boardY,boardX+boardSize, boardY+boardSize);
@@ -64,7 +66,7 @@ class Board {
 		return;
 	}
 
-    //а тут просто очищаем доску
+    // А тут просто очищаем доску
     method void clear() {
 		var int i;
 		let emptyCellsCount = 9;
@@ -78,7 +80,8 @@ class Board {
 
     function void main() {
         do Screen.clearScreen();
-        do drawBoard();         // Отрисовка игрового поля
+        do drawBoard();
+
         return;
     }
 
