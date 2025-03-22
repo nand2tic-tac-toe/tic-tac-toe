@@ -4,25 +4,42 @@ class Board {
     // Количество пустых клеток
     field int emptyCellsCount;
     // Состояние поля
-    field int winMode; // 0 - ряд, 1-столбик, 2 - верхняя диаг, 3 - нижняя диагональ
+    field int winVariable; // 0 - ряд, 1-столбик, 2 - верхняя диаг, 3 - нижняя диагональ
     field boolean isPlayerWin;
     field boolean isDraw;
+    field int winRow,winCol; // по каким рядам/столбцам победа
     // параметры
     field int boardX, boardY, boardSize, thickness, cellSize, finishLineThickness;
 
 
 
-    constructor Board new(int x,int y) {		
+    constructor Board new(int x,int y) {
+        let boardArray = Array.new(9);	
 		let boardX = x;
 		let boardY = y;
 		let boardSize = 120;
 		let thickness = 4;
 		let finishLineThickness = 4;
 		let cellSize = boardSize/3;
-		let boardArray = Array.new(9);
 		do clear();
 		do drawBoard();
 		return this;
+	}
+
+    method void drawWin() {
+		if(winVariable=0) {
+			do rowWin(winRow);
+		}
+		if(winVariable=1) {
+			do colWin(winCol);
+		}
+		if(winVariable=2) {
+			do topDiagonalWin();
+		}
+		if(winVariable =3) {
+			do botDiagonalWin();
+		}
+		return;
 	}
 
     method boolean isWin() {
@@ -37,11 +54,17 @@ class Board {
 		return emptyCellsCount;
 	}
 
+
+    //чистим ресурсики (доску, память)
     method void dispose() {
+        do Screen.setColor(false);
+		do Screen.drawRectangle(boardX,boardY,boardX+boardSize, boardY+boardSize);
+		do Screen.setColor(true);
 		do Memory.deAlloc(boardArray);
 		return;
 	}
 
+    //а тут просто очищаем доску
     method void clear() {
 		var int i;
 		let emptyCellsCount = 9;
@@ -52,11 +75,13 @@ class Board {
 		return;
 	}
 
+
     function void main() {
-        do Screen.clearScreen(); // Очистка экрана
+        do Screen.clearScreen();
         do drawBoard();         // Отрисовка игрового поля
         return;
     }
+
 
     method void drawBoard() {
         // Рисование вертикальных линий
@@ -66,6 +91,24 @@ class Board {
         // Рисование горизонтальных линий
         do Screen.drawLine(0, 85, 511, 85);   // Горизонтальная линия 1
         do Screen.drawLine(0, 170, 511, 170); // Горизонтальная линия 2
+        return;
+    }
+
+
+    method void rowWin(int row){
+        return;
+    }
+
+
+    method void colWin(int col){
+        return;
+    }
+
+    method void topDiagonalWin(){
+        return;
+    }
+
+    method void botDiagonalWin(){
         return;
     }
 }
