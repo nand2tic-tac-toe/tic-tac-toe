@@ -190,4 +190,8 @@ class Board {
         let emptyCellsCount = emptyCellsCount + 1;
         return;
     }
+
+    method void getAvailableMoves() {
+        return;
+    }
 }
