@@ -1,3 +1,27 @@
 class Game {
     static Board board;
+    static Mark naught, cross;
+
+    function void initialize() {
+        let naught = Mark.new(1);
+        let cross = Mark.new(1);
+
+        return;
+    }
+
+    function void startGame() {
+        var int gameStatus;
+
+        return;
+    }
+
+    function int evaluateBoard() {
+        if (board.isWin()) {
+            return 3;
+        }
+        if (board.isDraw()) {
+			return 2;
+		}
+        return 1;
+    }
 }
