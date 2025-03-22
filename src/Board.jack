@@ -114,11 +114,36 @@ class Board {
 		return;
     }
 
-    method void topDiagonalWin(){
-        return;
-    }
+     method void botDiagonalWin() {
+    var int i, x, y; 
+    let x = boardX; 
+    let y = boardY; 
+    let i = finishLineThickness - 1; 
 
-    method void botDiagonalWin(){
-        return;
+    // (нижняя диагональ)
+    while (~(i < 0)) {
+        //(от левого нижнего угла к правому верхнему)
+        do Screen.drawLine(x, y + boardSize - i, x + boardSize - i, y);
+        //(от левого верхнего угла к правому нижнему)
+        do Screen.drawLine(x + i, y + boardSize, x + boardSize, y + i);
+        let i = i - 1; 
     }
+    return;
+}
+
+method void topDiagonalWin() {
+    var int i, x, y; 
+    let x = boardX; 
+    let y = boardY; 
+    let i = finishLineThickness - 1; //  счётчик для толщины линии
+
+    while (~(i < 0)) {
+        // (от левого верхнего угла к правому нижнему)
+        do Screen.drawLine(x + i, y, x + boardSize, y + boardSize - i);
+        // (от левого нижнего угла к правому верхнему)
+        do Screen.drawLine(x, y + i, x + boardSize - i, y + boardSize);
+        let i = i - 1; // Уменьшаем счётчик
+    }
+    return;
+}
 }
