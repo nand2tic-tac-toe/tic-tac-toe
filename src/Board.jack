@@ -77,15 +77,8 @@ class Board {
 
 
     function void main() {
-<<<<<<< HEAD
         do Screen.clearScreen();
         do drawBoard();         // Отрисовка игрового поля
-=======
-        // Очистка экрана
-        do Screen.clearScreen(); 
-        // Отрисовка игрового поля
-        do drawBoard();         
->>>>>>> f7e094d8a60350b14faf019bd69b1f216b8ba9f8
         return;
     }
 
@@ -103,12 +96,19 @@ class Board {
 
 
     method void rowWin(int row){
-        return;
+        var int y, displacement;
+		let y = (cellSize/2) + boardY + (row * cellSize); 
+		let displacement = finishLineThickness/2;
+		do Screen.drawRectangle(boardX, y - displacement, boardX + boardSize, y + displacement);
+		return; 
     }
 
-
     method void colWin(int col){
-        return;
+        var int x, displacement;
+		let x = (cellSize/2) + boardX + (col *cellSize);
+		let displacement = finishLineThickness/2;
+		do Screen.drawRectangle(x - displacement, boardY, x + displacement, boardY + boardSize);
+		return;
     }
 
     method void topDiagonalWin(){
