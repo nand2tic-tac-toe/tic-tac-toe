@@ -114,7 +114,7 @@ class Board {
 		return;
     }
 
-     method void botDiagonalWin() {
+    method void botDiagonalWin() {
     var int i, x, y; 
     let x = boardX; 
     let y = boardY; 
@@ -129,9 +129,9 @@ class Board {
         let i = i - 1; 
     }
     return;
-}
+    }
 
-method void topDiagonalWin() {
+    method void topDiagonalWin() {
     var int i, x, y; 
     let x = boardX; 
     let y = boardY; 
@@ -145,5 +145,49 @@ method void topDiagonalWin() {
         let i = i - 1; // Уменьшаем счётчик
     }
     return;
-}
+    }
+
+    method int posToIndex(int row, int col) {
+		return col+(row*3);
+	}
+	
+	method boolean isFree(int row, int col) {
+		if(boardArray[posToIndex(row,col)]=0) {
+			return true;
+		}
+        else {
+			return false;
+		}
+	}
+
+    //need to do
+    method void evaluate(){
+        return;
+    }
+
+    // добавляем наш ход
+    method void makeMove(int row, int col, Mark p) {
+        // Устанавливаем тип фигуры (крестик или нолик) в указанной клетке
+        let boardArray[posToIndex(row, col)] = p.getType();
+        let emptyCellsCount = emptyCellsCount - 1;
+        return;
+    }
+        // рисуем наш ход
+    method void drawMove(int row, int col, Mark p) {
+        var int xl, yt; 
+        // находим х(центрируем по гориз.)
+        let xl = boardX + (col * cellSize) + ((cellSize - p.getWidth()) / 2);
+        // находим у(центрируем по верт.)
+        let yt = boardY + (row * cellSize) + ((cellSize - p.getHeight()) / 2);
+        // Отрисовываем фигуру на доске
+        do p.drawMark(xl, yt);
+        return;
+    }
+
+    // отменa хода
+    method void takeBackMove(int row, int col, Mark p) {
+        let boardArray[posToIndex(row, col)] = 0;
+        let emptyCellsCount = emptyCellsCount + 1;
+        return;
+    }
 }
