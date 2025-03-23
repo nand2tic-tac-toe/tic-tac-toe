@@ -1,0 +1,33 @@
+class Utils 
+{
+	static int icr;
+    static int isc;
+
+	function void init() {
+		let icr = 1;
+		let isc = 1;
+
+		return;
+	}
+
+	function void deleteMessage() {
+		var String str;
+		do Output.moveCursor(icr,isc);
+		let str = "                                                 ";
+		do Output.printString(str);
+		do str.dispose();
+
+		return;
+	}
+
+	function void showMessage(String str) {
+		do Utils.deleteMessage();
+		do Output.moveCursor(icr,isc);
+		do Output.printString(str);
+		do str.dispose();
+
+		return;
+	}
+	
+	// to do
+}
