@@ -1,7 +1,7 @@
 class Game {
     static Board board;
     static Mark naught, cross;
-    static int statistics;
+    static int animationIter;
 
     function void init() {
         do Utils.init();
@@ -186,36 +186,37 @@ class Game {
     }
 
     function void animation() {
-    var String s;
-    let animationIter = animationIter + 1;
-    if (animationIter = 1) {
-        do Utils.showMessage("In progress... /");
+        var String s;
+        let animationIter = animationIter + 1;
+
+        if (animationIter = 1) {
+            do Utils.showMessage("In progress... /");
+            return;
+        }
+        if (animationIter = 100) {
+            do Utils.showMessage("In progress... -");
+            return;
+        }
+        if (animationIter= 200) {
+            do Utils.showMessage("In progress... |");
+            return;
+        }
+        if (animationIter= 300) {
+            do Utils.showMessage("In progress... -");
+            return;
+        }
+        if (animationIter= 600) {
+            do Utils.showMessage("In progress... \");
+            return;
+        }
+        if (animationIter= 600) {
+            do Utils.showMessage("In progress... *");
+            return;
+        }
+        if (animationIter = 500) {
+            let animationIter = 0;
+        }
         return;
-    }
-    if (animationIter = 100) {
-        do Utils.showMessage("In progress... -");
-        return;
-    }
-    if (animationIter= 200) {
-        do Utils.showMessage("In progress... |");
-        return;
-    }
-    if (animationIter= 300) {
-        do Utils.showMessage("In progress... -");
-        return;
-    }
-    if (animationIter= 600) {
-        do Utils.showMessage("In progress... \");
-        return;
-    }
-    if (animationIter= 600) {
-        do Utils.showMessage("In progress... *");
-        return;
-    }
-    if (animationIter = 500) {
-        let animationIter = 0;
-    }
-    return;
     }
 
     function int getMoveScore(Mark mark) {
