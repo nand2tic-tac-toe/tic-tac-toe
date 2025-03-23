@@ -31,16 +31,16 @@ class Board {
     method void drawWin() {
 		if (winVariable = 0) {
 			do rowWin(winRow);
-		}
+		}// enter after the curly bracket
 		if (winVariable = 1) {
 			do colWin(winCol);
-		}
+		}// enter after the curly bracket
 		if (winVariable = 2) {
 			do topDiagonalWin();
-		}
+		}// enter after the curly bracket
 		if (winVariable = 3) {
 			do botDiagonalWin();
-		}
+		}// enter after the curly bracket
 		return;
 	}
 
@@ -168,7 +168,7 @@ class Board {
 	method boolean isFree(int row, int column) {
 		if (boardArray[positionToIndex(row, column)] = 0) {
 			return true;
-		} else {
+		} else { // enter befor else
 			return false;
 		}
 	}
@@ -176,7 +176,7 @@ class Board {
     method void evaluateWin() {
         // FIX: names of variables
 		// Done!
-		var int row, col, cell1, cell2, cell3; 
+		var int row, col, cell1, cell2, cell3; //bad naming variables
 		let isPlayerWin = false; 
 		let isDraw = false; 
 		let row = 0; 
@@ -279,7 +279,7 @@ class Board {
 		let r1 = 0;
 		let c1 = 0;
 		let moves = Array.new(emptyCellsCount * 2);
-		let counter = 0;
+		let counter = 0;// enter after ;
 		while (r1 < 3) {
 			let c1 = 0;
 			while (c1 < 3) {
@@ -291,7 +291,7 @@ class Board {
 				let c1 = c1 + 1;
 			}
 			let r1 = r1 + 1;
-		}
+		}//enter after the curly bracket
 		return moves;
 	}
 }

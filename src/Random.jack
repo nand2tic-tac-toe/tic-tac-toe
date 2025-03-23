@@ -1,4 +1,4 @@
-class Random {
+class Random {// enter after the curly bracket
     static int seed;
     
     function void setSeed(int newSeed) {

@@ -39,12 +39,12 @@ class Game {
                 let isGameOver = true;
             }
 
-            if (gameStatus = 3) {
+            if (gameStatus = 3) { //enter after the curly bracket
                 if (currentPlayer = 0) {
                     // Won't happen with smart computer
                     // FIX: add difficulty levels
                     do Utils.showMessage("You win, enter to restart");
-                } else {
+                } else { // enter befor else
                     do Utils.showMessage("You lost, enter to restart");
                 }
                 let isGameOver = true;
@@ -202,7 +202,7 @@ class Game {
         do Utils.showMessage("In progress... -");
         return;
     }
-    if (animationIter= 600) {
+    if (animationIter= 600) {//what is??? backslash crush this program
         do Utils.showMessage("In progress... \");
         return;
     }
