@@ -1,7 +1,7 @@
 class Game {
     static Board board;
     static Mark naught, cross;
-    static int statistics;
+    static int animationIter;
 
     function void initialize() {
         let naught = Mark.new(1);
@@ -166,7 +166,7 @@ class Game {
         let moveList = board.getMoves();
 
         while (i < moveCount) {
-            do Game.incrementStat();
+            do Game.animation();
             do board.makeMove(moveList[i + i], moveList[i + i + 1], mark);
             let nextScore = Game.getMoveScore(mark);
             if (nextScore > currentScore) {
@@ -183,9 +183,37 @@ class Game {
         return bestMove;
     }
 
-    //todo
-    function void incrementStat() {
+    function void animation() {
+    var String s;
+    let animationIter = animationIter + 1;
+    if (animationIter = 1) {
+        do Utils.showMessage("In progress... /");
         return;
+    }
+    if (animationIter = 100) {
+        do Utils.showMessage("In progress... -");
+        return;
+    }
+    if (animationIter= 200) {
+        do Utils.showMessage("In progress... |");
+        return;
+    }
+    if (animationIter= 300) {
+        do Utils.showMessage("In progress... -");
+        return;
+    }
+    if (animationIter= 600) {
+        do Utils.showMessage("In progress... \");
+        return;
+    }
+    if (animationIter= 600) {
+        do Utils.showMessage("In progress... *");
+        return;
+    }
+    if (animationIter = 500) {
+        let animationIter = 0;
+    }
+    return;
     }
 
     function int getMoveScore(Mark mark) {
