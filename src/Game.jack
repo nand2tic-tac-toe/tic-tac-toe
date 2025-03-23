@@ -70,17 +70,19 @@ class Game {
 
         if (player = 0) {
             while (~isInputValid) {
-                // Get input
-                
-                // Restart the game when input 0
+                let input = Utils.processInput("Enter (1-9) for move or 0 to restart: ");
+
                 if (input = 0) {
                     return 0;
                 }
-
-                // Process player move
+                
+                let playerMove = board.indexToPosition(input);
                 let isInputValid = board.isFree(playerMove[0], playerMove[1]);
-                do playerMove.dispose();
+                
             }
+            do board.makeMove(playerMove[0], playerMove[1], mark);
+            do board.drawMove(playerMove[0], playerMove[1], mark);
+            do playerMove.dispose();
         } else {
             // Get computer move
             // Draw move

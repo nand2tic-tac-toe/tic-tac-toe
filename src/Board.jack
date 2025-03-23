@@ -157,6 +157,16 @@ class Board {
     method int positionToIndex(int row, int column) {
 		return column + (row * 3);
 	}
+
+    method Array indexToPosition(int index) {
+		var Array moves;
+
+		let moves = Array.new(2);
+		let moves[0] = (index - 1) / 3 ;
+		let moves[1] = (index - 1) - (3 * moves[0]);
+
+		return moves;
+	}
 	
 	method boolean isFree(int row, int column) {
 		if (boardArray[positionToIndex(row, column)] = 0) {
