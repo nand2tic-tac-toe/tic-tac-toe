@@ -85,17 +85,15 @@ class Board {
         return;
     }
 
-    method void drawBoard() {
-        // Рисование вертикальных линий
-        do Screen.drawLine(170, 0, 170, 255);
-        do Screen.drawLine(340, 0, 340, 255);
-
-        // Рисование горизонтальных линий
-        do Screen.drawLine(0, 85, 511, 85);
-        do Screen.drawLine(0, 170, 511, 170);
-
-        return;
-    }
+  	method void drawBoard() {
+		var int offset;
+		let offset = thickness/2;
+		do Screen.drawRectangle(boardX+cellSize-offset,boardY, boardX+cellSize+offset,boardY+boardSize);
+		do Screen.drawRectangle(boardX+(2*cellSize)-offset,boardY, boardX+(2*cellSize)+offset,boardY+boardSize);
+		do Screen.drawRectangle(boardX,boardY+cellSize-offset, boardX+boardSize,boardY+cellSize+offset);
+		do Screen.drawRectangle(boardX,boardY+(2*cellSize)-offset, boardX+boardSize,boardY+(2*cellSize)+offset);
+		return;
+	}
 
     method void rowWin(int row){
         var int y, displacement;
