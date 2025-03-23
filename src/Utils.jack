@@ -30,17 +30,18 @@ class Utils
 		return;
 	}
 
-	function int processInput(String str) {
+	// Displays prompt and gets integer input
+	function int processInput(String prompt) {
 		var char c;
 
 		do Utils.deleteMessage();
 
 		while (true) {
 			do Output.moveCursor(icr, isc);
-			do Output.printString(str);
+			do Output.printString(prompt);
 			let c = Keyboard.readChar();
 			if((c > 47) & (c < 58)) {
-				do str.dispose();
+				do prompt.dispose();
 				return c - 48;
 			}
 		}
