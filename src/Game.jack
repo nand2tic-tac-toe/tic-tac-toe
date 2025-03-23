@@ -130,7 +130,7 @@ class Game {
 		let moves = Array.new(2);
 
 		if (board.getEmptyCellsCount() = 9) {
-			return Game.getRandomFirstMove();
+			return Game.getGoodMove();
 		} else {
 			let movesWithScore = Game.getBestMove(mark);
 			let moves[0] = movesWithScore[1];
@@ -151,7 +151,7 @@ class Game {
 		
 	}
 
-    function Array getRandomMove() {
+    function Array getGoodMove() {
     var int randomValue; 
     var Array possibleMove; 
 
@@ -219,21 +219,18 @@ class Game {
 	}
 
     // Быстро получаем случайный первый ход компьютера
-    function Array getRandomFirstMove() {
-        var int move;
+    function Array getRandomMove() {
+		var int v;
 		var Array moves;
-        
-		while (true) {
-			let move = Random.randRange(4);
-			let move = (move * 2) + 1;
-			let moves = Game.inputToMove(move);
-
-			if (board.isFree(moves[0], moves[1])) {
+		while(true) {
+			let v = Random.randRange(8)+1;
+			let moves = Game.inputToMove(v);
+			if(board.isFree(moves[0],moves[1])) {
 				return moves;
 			}
 		}
 		return moves;
-    }
+	}
 
     function void getGameSeed() {
         var int count;
