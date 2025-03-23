@@ -10,9 +10,98 @@ class Game {
     }
 
     function void startGame() {
+        var int currentPlayer;
+        var int currentPiece;
         var int gameStatus;
+        var boolean isGameOver;
+
+        // TODO: Show welcome message
+
+        // TODO: Prompt? for first player (user or computer)
+        // 0 - user, 1 - computer
+        let currentPlayer = 0;
+        let currentPiece = cross;
+        let isGameOver = false;
+
+        while (~isGameOver) {
+            // Write function to process game step
+            let gameStatus = 0;
+
+            if (gameStatus = 0) {
+				let isGameOver = true;
+            }
+
+            if (gameStatus = 1) {
+                let currentPlayer = Game.getOtherPlayer(currentPlayer);
+                let currentPiece = Game.getOtherMark(currentPiece);
+            }
+
+            if (gameStatus = 2) {
+                // Draw
+                let isGameOver = true;
+            }
+
+            if(gameStatus = 3) {
+                if (currentPlayer = 0) {
+                    // Won't happen with smart computer
+                    // FIX: add difficulty levels
+
+                    // Show win message 
+                } else {
+                    // Show lose message
+                }
+
+                let isGameOver = true;
+            }
+
+            do board.dispose();
+        }
 
         return;
+    }
+
+    function int play(int player, Mark mark) {
+        var boolean isInputValid;
+        var int input;
+        var Array playerMove;
+        var Array computerMove;
+
+        let isInputValid = false;
+
+        if (player = 0) {
+            while (~isInputValid) {
+                // Get input
+                
+                // Restart the game when input 0
+                if (input = 0) {
+                    return 0;
+                }
+
+                // Process player move
+                let isInputValid = board.isFree(playerMove[0], playerMove[1]);
+                do playerMove.dispose();
+            }
+        } else {
+            // Get computer move
+            // Draw move
+            do computerMove.dispose();
+        }
+        
+        return Game.evaluateBoard();
+    }
+
+    function int getOtherPlayer(int player) {
+        if (player = 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    function Mark getOtherMark(Mark mark) {
+        if (mark = naught) {
+            return cross;
+        }
+        return naught;
     }
 
     function int evaluateBoard() {
