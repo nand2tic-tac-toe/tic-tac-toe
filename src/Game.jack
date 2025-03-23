@@ -170,7 +170,7 @@ class Game {
     }
 
 
-    function Array getBestMove(Mark p) {
+    function Array getBestMove(Mark mark) {
 		var int i,moveCount, currentScore,nextScore;
 		var Array moveList, bestMove;
 
@@ -182,8 +182,8 @@ class Game {
 		let moveList = board.getMoves();
 		while(i< moveCount) {
 			do Game.incStat();
-			do board.makeMove(moveList[i+i],moveList[i+i+1],p);
-			let nextScore = Game.getMoveScore(p);
+			do board.makeMove(moveList[i+i],moveList[i+i+1],mark);
+			let nextScore = Game.getMoveScore(mark);
 			if(nextScore>currentScore) {
 				let currentScore = nextScore;
 				let bestMove[0] = currentScore;
@@ -202,7 +202,7 @@ class Game {
         return;
     }
 
-    function int getMoveScore(Mark p) {
+    function int getMoveScore(Mark mark) {
 		var Array otherMove;
 		var int otherScore;
 		do board.evaluateWin();
@@ -212,7 +212,7 @@ class Game {
 		if(board.isWin()) {
 			return 1;
 		}
-		let otherMove= Game.getBestMove(Game.getOtherMark(p));
+		let otherMove= Game.getBestMove(Game.getOtherMark(mark));
 		let otherScore = otherMove[0];
 		do otherMove.dispose();
 		return -otherScore;		
@@ -220,17 +220,19 @@ class Game {
 
     // Быстро получаем случайный первый ход компьютера
     function Array getRandomMove() {
-		var int v;
-		var Array moves;
-		while(true) {
-			let v = Random.randRange(8)+1;
-			let moves = Game.inputToMove(v);
-			if(board.isFree(moves[0],moves[1])) {
-				return moves;
-			}
-		}
-		return moves;
-	}
+    var int randomInput; 
+    var Array possibleMove; 
+
+    while (true) {
+        let randomInput = Random.randRange(8) + 1;
+        // Преобразуем число в возможный ход (строка и столбец)
+        let possibleMove = Game.inputToMove(randomInput);
+        if (board.isFree(possibleMove[0], possibleMove[1])) {
+            return possibleMove; 
+        }
+    }
+    return possibleMove;
+}
 
     function void getGameSeed() {
         var int count;
