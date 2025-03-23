@@ -18,41 +18,45 @@ class Game {
 
         do Utils.showMessage("Press enter to start");
 
-        // TODO: Prompt? for first player (user or computer)
-        // 0 - user, 1 - computer
-        let currentPlayer = 0;
-        let currentPiece = cross;
-        let isGameOver = false;
+        while (true) {
+            
+            // TODO: Prompt? for first player (user or computer)
+            // 0 - user, 1 - computer
+            let currentPlayer = 0;
+            let currentPiece = cross;
+            let isGameOver = false;
+            let board = Board.new(200, 60);
 
-        while (~isGameOver) {
-            let gameStatus = Game.play(currentPlayer, currentPiece);
+            while (~isGameOver) {
+                let gameStatus = Game.play(currentPlayer, currentPiece);
 
-            if (gameStatus = 0) {
-                let isGameOver = true;
-            }
-
-            if (gameStatus = 1) {
-                let currentPlayer = Game.getOtherPlayer(currentPlayer);
-                let currentPiece = Game.getOtherMark(currentPiece);
-            }
-
-            if (gameStatus = 2) {
-                do Utils.showMessage("Game drawn, enter to restart");
-                let isGameOver = true;
-            }
-
-            if (gameStatus = 3) {
-                if (currentPlayer = 0) {
-                    // Won't happen with smart computer
-                    // FIX: add difficulty levels
-                    do Utils.showMessage("You win, enter to restart");
-                } else {
-                    do Utils.showMessage("You lost, enter to restart");
+                if (gameStatus = 0) {
+                    let isGameOver = true;
                 }
-                let isGameOver = true;
-            }
 
-            do board.dispose();
+                if (gameStatus = 1) {
+                    let currentPlayer = Game.getOtherPlayer(currentPlayer);
+                    let currentPiece = Game.getOtherMark(currentPiece);
+                }
+
+                if (gameStatus = 2) {
+                    do Utils.showMessage("Game drawn, enter to restart");
+                    let isGameOver = true;
+                }
+
+                if (gameStatus = 3) {
+                    if (currentPlayer = 0) {
+                        // Won't happen with smart computer
+                        // FIX: add difficulty levels
+                        do Utils.showMessage("You win, enter to restart");
+                    } else {
+                        do Utils.showMessage("You lost, enter to restart");
+                    }
+                    let isGameOver = true;
+                }
+
+                do board.dispose();
+            }
         }
 
         return;
