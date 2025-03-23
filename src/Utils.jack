@@ -29,48 +29,23 @@ class Utils
 
 		return;
 	}
-	
 
-function int readInput(String str) {
-    var int choice;
-    var char c;
-    
-    do Utils.deleteMessage();
+	// Displays prompt and gets integer input
+	function int processInput(String prompt) {
+		var char c;
 
-    while(true) {
-      do Output.moveCursor(icr,isc);
-      do Output.printString(str);
+		do Utils.deleteMessage();
 
-      let c = Keyboard.readChar();
+		while (true) {
+			do Output.moveCursor(icr, isc);
+			do Output.printString(prompt);
+			let c = Keyboard.readChar();
+			if((c > 47) & (c < 58)) {
+				do prompt.dispose();
+				return c - 48;
+			}
+		}
 
-      if((c>47) & (c<58)) {
-        do str.dispose();
-
-        return c-48;
-      }
-    }
-
-    return 0;
-  }
-  
-  function int waitForZeroOrOne(String str) {
-    var char c;
-    var int choice;
-
-    do Utils.deleteMessage();    
-    while(true) {
-      do Output.moveCursor(icr,isc);
-      do Output.printString(str);
-
-      let c = Keyboard.readChar();
-            
-      if((c>47) & (c<50)) {
-        do str.dispose();
-
-        return c-48;
-      }
-    }
-
-    return 0;
-  }
+		return -1;
+	}
 }
