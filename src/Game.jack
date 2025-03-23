@@ -9,8 +9,8 @@ class Game {
         return;
     }
 
-    function void resetStat() {
-		let p1 =0;
+    //TODO
+    function void resetStatistic() {
 		return;
 	}
 
@@ -125,7 +125,7 @@ class Game {
     function Array getComputerMove(Mark p) {
 		var Array moves;
 		var Array movesWithScore;
-		do Game.resetStat();
+		do Game.resetStatistic();
 		let moves = Array.new(2);
 		if(board.getEmptyCellsCount()=9) {
 			return Game.getRandomMove();
