@@ -154,56 +154,56 @@ class Board {
     return;
     }
 
-    method int posToIndex(int row, int col) {
-		return col+(row*3);
+    method int positionToIndex(int row, int column) {
+		return column + (row * 3);
 	}
 	
-	method boolean isFree(int row, int col) {
-		if(boardArray[posToIndex(row,col)]=0) {
+	method boolean isFree(int row, int column) {
+		if (boardArray[positionToIndex(row, column)] = 0) {
 			return true;
-		}
-        else {
+		} else {
 			return false;
 		}
 	}
 
 
     method void evaluate() {
-		var int r,c,b1,b2,b3;
+        // FIX: names of variables
+		var int r, c, b1, b2, b3;
 		let isPlayerWin = false;
 		let isDraw = false;
 		let r = 0;
 		let c = 0;
 
-		while(r<3) {
-			let b1 = boardArray[posToIndex(r,0)];
-			let b2 = boardArray[posToIndex(r,1)];
-			let b3 = boardArray[posToIndex(r,2)];
-			if((b1=b2) & (b2=b3) & (b1>0)) {
+		while (r < 3) {
+			let b1 = boardArray[positionToIndex(r, 0)];
+			let b2 = boardArray[positionToIndex(r, 1)];
+			let b3 = boardArray[positionToIndex(r, 2)];
+			if ((b1 = b2) & (b2 = b3) & (b1 > 0)) {
 				let isPlayerWin = true;
 				let winVariable = 0;
 				let winRow = r;
 				return;
 			}
-			let r = r+1;
+			let r = r + 1;
 		}
-		while(c<3) {
-			let b1 = boardArray[posToIndex(0,c)];
-			let b2 = boardArray[posToIndex(1,c)];
-			let b3 = boardArray[posToIndex(2,c)];
-			if((b1=b2) & (b2=b3)& (b1>0)) {
+		while(c < 3) {
+			let b1 = boardArray[positionToIndex(0, c)];
+			let b2 = boardArray[positionToIndex(1, c)];
+			let b3 = boardArray[positionToIndex(2, c)];
+			if ((b1 = b2) & (b2 = b3)& (b1 > 0)) {
 				let isPlayerWin = true;
 				let winVariable = 1;
 				let winCol = c;
 				return;
 			}
-			let c = c+1;
+			let c = c + 1;
 		}
 		
 		let b1 = boardArray[0];
 		let b2 = boardArray[4];
 		let b3 = boardArray[8];
-		if((b1=b2) & (b2=b3)& (b1>0)) {
+		if ((b1 = b2) & (b2 = b3)& (b1 > 0)) {
 			let isPlayerWin = true;
 			let winVariable = 2;
 			return;
@@ -212,43 +212,44 @@ class Board {
 		let b1 = boardArray[6];
 		let b2 = boardArray[4];
 		let b3 = boardArray[2];
-		if((b1=b2) & (b2=b3)& (b1>0)) {
+		if ((b1 = b2) & (b2 = b3)& (b1 > 0)) {
 			let isPlayerWin = true;
 			let winVariable = 3;
 			return;
 		}
 		
-		if(emptyCellsCount=0) {
+		if (emptyCellsCount = 0) {
 			let isDraw = true;
 			return;
 		}
-		return ;
+		return;
 	}
 
-    // добавляем наш ход
-    method void makeMove(int row, int col, Mark p) {
+    // Добавляем наш ход
+    method void makeMove(int row, int col, Mark mark) {
         // Устанавливаем тип фигуры (крестик или нолик) в указанной клетке
-        let boardArray[posToIndex(row, col)] = p.getType();
+        let boardArray[positionToIndex(row, col)] = mark.getType();
         let emptyCellsCount = emptyCellsCount - 1;
 
         return;
     }
-        // рисуем наш ход
-    method void drawMove(int row, int col, Mark p) {
+    // Рисуем наш ход
+    method void drawMove(int row, int column, Mark mark) {
         var int xl, yt; 
-        // находим х(центрируем по гориз.)
-        let xl = boardX + (col * cellSize) + ((cellSize - p.getWidth()) / 2);
-        // находим у(центрируем по верт.)
-        let yt = boardY + (row * cellSize) + ((cellSize - p.getHeight()) / 2);
+        // находим х (центрируем по гориз.)
+        let xl = boardX + (column * cellSize) + ((cellSize - mark.getWidth()) / 2);
+        // находим у (центрируем по верт.)
+        let yt = boardY + (row * cellSize) + ((cellSize - mark.getHeight()) / 2);
         // Отрисовываем фигуру на доске
-        do p.drawMark(xl, yt);
+        do mark.drawMark(xl, yt);
 
         return;
     }
 
-    // отменa хода
-    method void takeBackMove(int row, int col, Mark p) {
-        let boardArray[posToIndex(row, col)] = 0;
+    // Отменa хода
+    // UPD: зачем mark?
+    method void takeBackMove(int row, int column, Mark mark) {
+        let boardArray[positionToIndex(row, column)] = 0;
         let emptyCellsCount = emptyCellsCount + 1;
 
         return;
@@ -256,17 +257,17 @@ class Board {
 
     method Array getMoves() {
         var Array moves;
-		var int r1,c1,counter;
+		var int r1, c1, counter;
 		let r1 = 0;
 		let c1 = 0;
 		let moves = Array.new(emptyCellsCount * 2);
 		let counter = 0;
-		while(r1<3) {
+		while (r1 < 3) {
 			let c1 = 0;
-			while(c1<3) {
-				if(boardArray[posToIndex(r1,c1)]=0) {
+			while (c1 < 3) {
+				if (boardArray[positionToIndex(r1, c1)] = 0) {
 					let moves[counter] = r1;
-					let moves[counter+1] = c1;
+					let moves[counter + 1] = c1;
 					let counter = counter + 2;
 				}
 				let c1 = c1 + 1;

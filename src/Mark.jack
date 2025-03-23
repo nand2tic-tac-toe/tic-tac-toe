@@ -23,9 +23,7 @@ class Mark {
 		if (type = 1) 
         {
 			do drawNaught(x,y);
-		}
-        else 
-        {
+		} else {
 			do drawCross(x,y);
 		}
 
@@ -35,9 +33,9 @@ class Mark {
     method void drawCross(int x, int y) {
 		var int t, i;
 		let t = 4;
-		let i = t-1;
+		let i = t - 1;
 
-		while(~(i<0)) 
+		while (~(i < 0)) 
         {
 			do Screen.drawLine(x, y + height - i, x + width - i, y);
 			do Screen.drawLine(x + i, y + height, x + width, y + i);
