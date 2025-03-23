@@ -28,6 +28,24 @@ class Utils
 
 		return;
 	}
+
+	function int processInput(String str) {
+		var char c;
+
+		do Utils.deleteMessage();
+
+		while (true) {
+			do Output.moveCursor(icr, isc);
+			do Output.printString(str);
+			let c = Keyboard.readChar();
+			if((c > 47) & (c < 58)) {
+				do str.dispose();
+				return c - 48;
+			}
+		}
+
+		return -1;
+	}
 	
 	// to do
 }
