@@ -10,8 +10,7 @@ class Game {
     }
 
     function void startGame() {
-        var int currentPlayer;
-        var int currentPiece;
+        var int currentPlayer, currentPiece;
         var int gameStatus;
         var boolean isGameOver;
 

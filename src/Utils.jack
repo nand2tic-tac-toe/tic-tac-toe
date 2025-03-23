@@ -14,7 +14,7 @@ class Utils
 		var String str;
         let str = "                                                 ";
 
-		do Output.moveCursor(icr,isc);
+		do Output.moveCursor(icr, isc);
 		do Output.printString(str);
 		do str.dispose();
 
@@ -23,7 +23,7 @@ class Utils
 
 	function void showMessage(String str) {
 		do Utils.deleteMessage();
-		do Output.moveCursor(icr,isc);
+		do Output.moveCursor(icr, isc);
 		do Output.printString(str);
 		do str.dispose();
 

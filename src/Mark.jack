@@ -1,10 +1,9 @@
 class Mark {
     // 1: нолик, 2: крестик
     field int type;
-    field int height;
-    field int width;
+    field int height, width;
 
-    constructor Mark new (int t) 
+    constructor Mark new(int t) 
     {
         let type = t;
         let width = 16;
@@ -22,9 +21,9 @@ class Mark {
     {
 		if (type = 1) 
         {
-			do drawNaught(x,y);
+			do drawNaught(x, y);
 		} else {
-			do drawCross(x,y);
+			do drawCross(x, y);
 		}
 
 		return;

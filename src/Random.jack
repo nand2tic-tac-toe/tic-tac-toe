@@ -7,8 +7,6 @@ class Random {
         return;
     }
 
-
-
     function int rand() {
         let seed = seed + 20251;
 

@@ -56,7 +56,6 @@ class Board {
 		return emptyCellsCount;
 	}
 
-
     // Чистим ресурсики (доску, память)
     method void dispose() {
         do Screen.setColor(false);
@@ -79,14 +78,12 @@ class Board {
 		return;
 	}
 
-
     function void main() {
         do Screen.clearScreen();
         do drawBoard();
 
         return;
     }
-
 
     method void drawBoard() {
         // Рисование вертикальных линий
@@ -99,7 +96,6 @@ class Board {
 
         return;
     }
-
 
     method void rowWin(int row){
         var int y, displacement;
@@ -176,7 +172,6 @@ class Board {
 		}
 	}
 
-
     method void evaluate() {
         // FIX: names of variables
 		var int r, c, b1, b2, b3;
@@ -243,6 +238,7 @@ class Board {
 
         return;
     }
+
     // Рисуем наш ход
     method void drawMove(int row, int column, Mark mark) {
         var int xl, yt; 
