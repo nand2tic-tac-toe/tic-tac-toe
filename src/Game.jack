@@ -17,9 +17,9 @@ class Game {
         var boolean isGameOver;
 
         do Utils.showMessage("Press enter to start");
+        do Game.getGameSeed();
 
         while (true) {
-            
             // TODO: Prompt? for first player (user or computer)
             // 0 - user, 1 - computer
             let currentPlayer = 0;
