@@ -205,15 +205,15 @@ class Game {
             do Utils.showMessage("In progress... -");
             return;
         }
-        if (animationIter= 600) {
+        if (animationIter= 400) {
             do Utils.showMessage("In progress... \");
             return;
         }
-        if (animationIter= 600) {
+        if (animationIter= 500) {
             do Utils.showMessage("In progress... *");
             return;
         }
-        if (animationIter = 500) {
+        if (animationIter = 600) {
             let animationIter = 0;
         }
         return;
@@ -269,7 +269,7 @@ class Game {
 
             let count = count + 1;
 
-            if (count > 20251) {
+            if (count > 25444) {
                 let count = 1;
             }
         }
