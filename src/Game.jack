@@ -9,11 +9,6 @@ class Game {
         return;
     }
 
-    function void resetStatistics() {
-        let statistics = 0;
-        return;
-    }
-
     function void startGame() {
         var int currentPlayer, currentPiece;
         var int gameStatus;
@@ -121,7 +116,6 @@ class Game {
         var Array moves;
         var Array movesWithScore;
 
-        do Game.resetStatistics();
         let moves = Array.new(2);
 
         if (board.getEmptyCellsCount() = 9) {

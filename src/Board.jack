@@ -68,15 +68,16 @@ class Board {
 
     // А тут просто очищаем доску
     method void clear() {
-		var int i;
-		let emptyCellsCount = 9;
-		while(i < 9) {
-			let boardArray[i] = 0;
-			let i = i + 1;
-		}
-
-		return;
-	}
+    var int i;
+    let emptyCellsCount = 9;
+    let isPlayerWin = false;
+    let isDraw = false;
+    while (i < 9) {
+        let boardArray[i] = 0;
+        let i = i + 1;
+    }
+    return;
+}
 
     function void main() {
         do Screen.clearScreen();
@@ -86,14 +87,16 @@ class Board {
     }
 
   	method void drawBoard() {
-		var int offset;
-		let offset = thickness/2;
-		do Screen.drawRectangle(boardX+cellSize-offset,boardY, boardX+cellSize+offset,boardY+boardSize);
-		do Screen.drawRectangle(boardX+(2*cellSize)-offset,boardY, boardX+(2*cellSize)+offset,boardY+boardSize);
-		do Screen.drawRectangle(boardX,boardY+cellSize-offset, boardX+boardSize,boardY+cellSize+offset);
-		do Screen.drawRectangle(boardX,boardY+(2*cellSize)-offset, boardX+boardSize,boardY+(2*cellSize)+offset);
-		return;
-	}
+    var int offset;
+    let offset = thickness / 2;
+    // Вертикальные линии
+    do Screen.drawRectangle(boardX + cellSize - offset, boardY, boardX + cellSize + offset, boardY + boardSize);
+    do Screen.drawRectangle(boardX + (2 * cellSize) - offset, boardY, boardX + (2 * cellSize) + offset, boardY + boardSize);
+    // Горизонтальные линии
+    do Screen.drawRectangle(boardX, boardY + cellSize - offset, boardX + boardSize, boardY + cellSize + offset);
+    do Screen.drawRectangle(boardX, boardY + (2 * cellSize) - offset, boardX + boardSize, boardY + (2 * cellSize) + offset);
+    return;
+}
 
     method void rowWin(int row){
         var int y, displacement;
