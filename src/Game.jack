@@ -15,7 +15,7 @@ class Game {
         var int gameStatus;
         var boolean isGameOver;
 
-        // TODO: Show welcome message
+        do Utils.showMessage("Press enter to start");
 
         // TODO: Prompt? for first player (user or computer)
         // 0 - user, 1 - computer
@@ -24,8 +24,7 @@ class Game {
         let isGameOver = false;
 
         while (~isGameOver) {
-            // Write function to process game step
-            let gameStatus = 0;
+            let gameStatus = Game.play(currentPlayer, currentPiece);
 
             if (gameStatus = 0) {
 				let isGameOver = true;
@@ -37,7 +36,7 @@ class Game {
             }
 
             if (gameStatus = 2) {
-                // Draw
+                do Utils.showMessage("Game drawn, enter to restart");
                 let isGameOver = true;
             }
 
@@ -46,9 +45,9 @@ class Game {
                     // Won't happen with smart computer
                     // FIX: add difficulty levels
 
-                    // Show win message 
+                    do Utils.showMessage("You win, enter to restart");
                 } else {
-                    // Show lose message
+                    do Utils.showMessage("You lost, enter to restart");
                 }
 
                 let isGameOver = true;
