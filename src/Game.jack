@@ -1,6 +1,7 @@
 class Game {
     static Board board;
     static Mark naught, cross;
+    static int statistics;
 
     function void initialize() {
         let naught = Mark.new(1);
@@ -9,8 +10,8 @@ class Game {
         return;
     }
 
-    //TODO
-    function void resetStatistic() {
+    function void resetStatistics() {
+        let statistics = 0;
 		return;
 	}
 
@@ -87,11 +88,10 @@ class Game {
             do board.drawMove(playerMove[0], playerMove[1], mark);
             do playerMove.dispose();
         } else {
-            // TODO: getComputerMove
             let computerMove = Game.getComputerMove(mark);
 
-			do board.makeMove(computerMove[0],computerMove[1], mark);
-			do board.drawMove(computerMove[0],computerMove[1], mark);
+			do board.makeMove(computerMove[0], computerMove[1], mark);
+			do board.drawMove(computerMove[0], computerMove[1], mark);
             do computerMove.dispose();
         }
         
@@ -122,18 +122,22 @@ class Game {
         return 1;
     }
 
-    function Array getComputerMove(Mark p) {
+    function Array getComputerMove(Mark mark) {
 		var Array moves;
 		var Array movesWithScore;
-		do Game.resetStatistic();
+
+		do Game.resetStatistics();
 		let moves = Array.new(2);
-		if(board.getEmptyCellsCount()=9) {
-			return Game.getRandomMove();
-		}else {
-			let movesWithScore = Game.getBestMove(p);
-			let moves[0]=movesWithScore[1]; //ignore score!
+
+		if (board.getEmptyCellsCount() = 9) {
+			return Game.getRandomFirstMove();
+		} else {
+			let movesWithScore = Game.getBestMove(mark);
+			let moves[0] = movesWithScore[1];
 			let moves[1] = movesWithScore[2];
+
 			do movesWithScore.dispose();
+
 			return moves;
 		}
 	}
@@ -141,8 +145,8 @@ class Game {
     function Array inputToMove(int input) {
 		var Array moves;
 		let moves = Array.new(2);
-		let moves[0] = (input-1)/3 ; 
-		let moves[1] = (input-1)-(3*moves[0]);
+		let moves[0] = (input - 1) / 3 ; 
+		let moves[1] = (input - 1) - (3 * moves[0]);
 		return moves;
 		
 	}
@@ -156,10 +160,12 @@ class Game {
         // Преобразуем число в допустимый индекс хода (1, 3, 5, 7)
         let randomValue = (randomValue * 2) + 1;
         let possibleMove = Game.inputToMove(randomValue);
+
         if (board.isFree(possibleMove[0], possibleMove[1])) {
             return possibleMove; 
         }
     }
+    
     return possibleMove; // фейковый костыль
     }
 
@@ -211,4 +217,44 @@ class Game {
 		do otherMove.dispose();
 		return -otherScore;		
 	}
+
+    // Быстро получаем случайный первый ход компьютера
+    function Array getRandomFirstMove() {
+        var int move;
+		var Array moves;
+        
+		while (true) {
+			let move = Random.randRange(4);
+			let move = (move * 2) + 1;
+			let moves = Game.inputToMove(move);
+
+			if (board.isFree(moves[0], moves[1])) {
+				return moves;
+			}
+		}
+		return moves;
+    }
+
+    function void getGameSeed() {
+        var int count;
+        var boolean isEnterPressed;
+
+        let isEnterPressed = false;
+        let count = 1;
+
+        while (~isEnterPressed) {
+            if (Keyboard.keyPressed() = 128) {
+				let isEnterPressed = true;
+			}
+
+			let count = count + 1;
+
+			if(count > 20251) {
+				let count = 1;
+			}
+        }
+
+        do Random.setSeed(count);
+        return;
+    }
 }
