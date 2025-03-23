@@ -163,6 +163,7 @@ class Game {
     return possibleMove; // фейковый костыль
     }
 
+
     function Array getBestMove(Mark p) {
 		var int i,moveCount, currentScore,nextScore;
 		var Array moveList, bestMove;
