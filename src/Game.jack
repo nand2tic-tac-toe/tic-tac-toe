@@ -83,8 +83,11 @@ class Game {
             do board.drawMove(playerMove[0], playerMove[1], mark);
             do playerMove.dispose();
         } else {
-            // Get computer move
-            // Draw move
+            // TODO: getComputerMove
+            let computerMove = Game.getComputerMove(mark);
+
+			do board.makeMove(computerMove[0],computerMove[1], mark);
+			do board.drawMove(computerMove[0],computerMove[1], mark);
             do computerMove.dispose();
         }
         
