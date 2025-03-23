@@ -172,57 +172,68 @@ class Board {
 		}
 	}
 
-    method void evaluate() {
+    method void evaluateWin() {
         // FIX: names of variables
-		var int r, c, b1, b2, b3;
-		let isPlayerWin = false;
-		let isDraw = false;
-		let r = 0;
-		let c = 0;
+		// Done!
+		var int row, col, cell1, cell2, cell3; 
+		let isPlayerWin = false; 
+		let isDraw = false; 
+		let row = 0; 
+		let col = 0; 
 
-		while (r < 3) {
-			let b1 = boardArray[positionToIndex(r, 0)];
-			let b2 = boardArray[positionToIndex(r, 1)];
-			let b3 = boardArray[positionToIndex(r, 2)];
-			if ((b1 = b2) & (b2 = b3) & (b1 > 0)) {
-				let isPlayerWin = true;
-				let winVariable = 0;
-				let winRow = r;
+		// Проверяем победу по строкам
+		while (row < 3) {
+			let cell1 = boardArray[positionToIndex(row, 0)]; 
+			let cell2 = boardArray[positionToIndex(row, 1)]; 
+			let cell3 = boardArray[positionToIndex(row, 2)];
+			// Если все три клетки в строке равны и не пусты, игрок выиграл
+			if ((cell1 = cell2) & (cell2 = cell3) & (cell1 > 0)) {
+				let isPlayerWin = true; 
+				let winVariable = 0; 
+				let winRow = row; //запоминаем выигрышный ряд
 				return;
 			}
-			let r = r + 1;
+			let row = row + 1;
 		}
-		while(c < 3) {
-			let b1 = boardArray[positionToIndex(0, c)];
-			let b2 = boardArray[positionToIndex(1, c)];
-			let b3 = boardArray[positionToIndex(2, c)];
-			if ((b1 = b2) & (b2 = b3)& (b1 > 0)) {
-				let isPlayerWin = true;
-				let winVariable = 1;
-				let winCol = c;
+
+		// Проверяем победу по столбцам
+		while (col < 3) {
+			let cell1 = boardArray[positionToIndex(0, col)]; 
+			let cell2 = boardArray[positionToIndex(1, col)]; 
+			let cell3 = boardArray[positionToIndex(2, col)]; 
+			// Если все три клетки в столбце равны и не пусты, игрок выиграл
+			if ((cell1 = cell2) & (cell2 = cell3) & (cell1 > 0)) {
+				let isPlayerWin = true; 
+				let winVariable = 1; 
+				let winCol = col; // Запоминаем выигрышный столбец
 				return;
 			}
-			let c = c + 1;
+			let col = col + 1; // Переходим к следующему столбцу
 		}
-		
-		let b1 = boardArray[0];
-		let b2 = boardArray[4];
-		let b3 = boardArray[8];
-		if ((b1 = b2) & (b2 = b3)& (b1 > 0)) {
-			let isPlayerWin = true;
+
+		// Проверяем победу по главной диагонали (сверху вниз идем)
+		let cell1 = boardArray[0]; 
+		let cell2 = boardArray[4]; 
+		let cell3 = boardArray[8]; 
+		// Если все три клетки на диагонали равны и не пусты, игрок выиграл
+		if ((cell1 = cell2) & (cell2 = cell3) & (cell1 > 0)) {
+			let isPlayerWin = true; 
 			let winVariable = 2;
 			return;
 		}
-		
-		let b1 = boardArray[6];
-		let b2 = boardArray[4];
-		let b3 = boardArray[2];
-		if ((b1 = b2) & (b2 = b3)& (b1 > 0)) {
-			let isPlayerWin = true;
-			let winVariable = 3;
+
+		// Проверяем победу по побочной диагонали
+		let cell1 = boardArray[6]; 
+		let cell2 = boardArray[4]; 
+		let cell3 = boardArray[2]; 
+
+		if ((cell1 = cell2) & (cell2 = cell3) & (cell1 > 0)) {
+			let isPlayerWin = true; 
+			let winVariable = 3; 
 			return;
 		}
-		
+
+		// Проверяем ничью 
 		if (emptyCellsCount = 0) {
 			let isDraw = true;
 			return;
@@ -253,11 +264,11 @@ class Board {
     }
 
     // Отменa хода
-    // UPD: зачем mark?
-    method void takeBackMove(int row, int column, Mark mark) {
+    // UPD: зачем mark? 
+	// answ: затуп, сначала написал, забыл убрать
+    method void takeBackMove(int row, int column) {
         let boardArray[positionToIndex(row, column)] = 0;
         let emptyCellsCount = emptyCellsCount + 1;
-
         return;
     }
 
