@@ -20,7 +20,7 @@ class Board {
 		let boardSize = 120;
 		let thickness = 4;
 		let finishLineThickness = 4;
-		let cellSize = boardSize/3;
+		let cellSize = boardSize / 3;
 
 		do clear();
 		do drawBoard();
@@ -59,7 +59,7 @@ class Board {
     // Чистим ресурсики (доску, память)
     method void dispose() {
         do Screen.setColor(false);
-		do Screen.drawRectangle(boardX,boardY,boardX+boardSize, boardY+boardSize);
+		do Screen.drawRectangle(boardX, boardY, boardX + boardSize, boardY + boardSize);
 		do Screen.setColor(true);
 		do Memory.deAlloc(boardArray);
         
@@ -100,16 +100,16 @@ class Board {
 
     method void rowWin(int row){
         var int y, displacement;
-		let y = (cellSize/2) + boardY + (row * cellSize); 
-		let displacement = finishLineThickness/2;
+		let y = (cellSize / 2) + boardY + (row * cellSize); 
+		let displacement = finishLineThickness / 2;
 		do Screen.drawRectangle(boardX, y - displacement, boardX + boardSize, y + displacement);
 
 		return; 
     }
 
-    method void colWin(int col){
+    method void colWin(int column){
         var int x, displacement;
-		let x = (cellSize/2) + boardX + (col *cellSize);
+		let x = (cellSize / 2) + boardX + (column * cellSize);
 		let displacement = finishLineThickness/2;
 		do Screen.drawRectangle(x - displacement, boardY, x + displacement, boardY + boardSize);
 
@@ -265,8 +265,6 @@ class Board {
     }
 
     // Отменa хода
-    // UPD: зачем mark? 
-	// answ: затуп, сначала написал, забыл убрать
     method void takeBackMove(int row, int column) {
         let boardArray[positionToIndex(row, column)] = 0;
         let emptyCellsCount = emptyCellsCount + 1;

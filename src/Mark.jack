@@ -39,7 +39,7 @@ class Mark {
 			do Screen.drawLine(x, y + height - i, x + width - i, y);
 			do Screen.drawLine(x + i, y + height, x + width, y + i);
 			
-			do Screen.drawLine(x + i, y , x + width, y + height - i);
+			do Screen.drawLine(x + i, y, x + width, y + height - i);
 			do Screen.drawLine(x, y + i, x + width - i, y + height);
 	
 			let i = i - 1;
