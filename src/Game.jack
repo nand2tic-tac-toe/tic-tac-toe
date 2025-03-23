@@ -9,6 +9,11 @@ class Game {
         return;
     }
 
+    function void resetStat() {
+		let p1 =0;
+		return;
+	}
+
     function void startGame() {
         var int currentPlayer, currentPiece;
         var int gameStatus;
@@ -116,4 +121,93 @@ class Game {
 		}
         return 1;
     }
+
+    function Array getComputerMove(Mark p) {
+		var Array moves;
+		var Array movesWithScore;
+		do Game.resetStat();
+		let moves = Array.new(2);
+		if(board.getEmptyCellsCount()=9) {
+			return Game.getRandomMove();
+		}else {
+			let movesWithScore = Game.getBestMove(p);
+			let moves[0]=movesWithScore[1]; //ignore score!
+			let moves[1] = movesWithScore[2];
+			do movesWithScore.dispose();
+			return moves;
+		}
+	}
+
+    function Array inputToMove(int input) {
+		var Array moves;
+		let moves = Array.new(2);
+		let moves[0] = (input-1)/3 ; 
+		let moves[1] = (input-1)-(3*moves[0]);
+		return moves;
+		
+	}
+
+    function Array getRandomMove() {
+    var int randomValue; 
+    var Array possibleMove; 
+
+    while (true) {
+        let randomValue = Random.randRange(4);
+        // Преобразуем число в допустимый индекс хода (1, 3, 5, 7)
+        let randomValue = (randomValue * 2) + 1;
+        let possibleMove = Game.inputToMove(randomValue);
+        if (board.isFree(possibleMove[0], possibleMove[1])) {
+            return possibleMove; 
+        }
+    }
+    return possibleMove; // фейковый костыль
+    }
+
+    function Array getBestMove(Mark p) {
+		var int i,moveCount, currentScore,nextScore;
+		var Array moveList, bestMove;
+
+		let i = 0;
+		let currentScore = -10;     
+		
+		let bestMove=Array.new(3);
+		let moveCount = board.getEmptyCellsCount();
+		let moveList = board.getMoves();
+		while(i< moveCount) {
+			do Game.incStat();
+			do board.makeMove(moveList[i+i],moveList[i+i+1],p);
+			let nextScore = Game.getMoveScore(p);
+			if(nextScore>currentScore) {
+				let currentScore = nextScore;
+				let bestMove[0] = currentScore;
+				let bestMove[1] = moveList[i+i];
+				let bestMove[2] = moveList[i+i+1];
+			}
+			do board.takeBackMove(moveList[i+i],moveList[i+i+1]);
+			let i = i+1;
+		}
+		do moveList.dispose();
+		return bestMove;
+	}
+
+    //todo
+    function void incStat(){
+        return;
+    }
+
+    function int getMoveScore(Mark p) {
+		var Array otherMove;
+		var int otherScore;
+		do board.evaluateWin();
+		if(board.isDraw()) {
+			return 0;
+		}
+		if(board.isWin()) {
+			return 1;
+		}
+		let otherMove= Game.getBestMove(Game.getOtherMark(p));
+		let otherScore = otherMove[0];
+		do otherMove.dispose();
+		return -otherScore;		
+	}
 }
