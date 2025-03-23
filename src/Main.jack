@@ -2,7 +2,7 @@ class Main {
     function void main() {
 		do Screen.clearScreen();
 		
-		do Game.initialize();
+		do Game.init();
 		do Game.startGame();
 		
 		return;

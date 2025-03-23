@@ -1,9 +1,11 @@
 class Game {
     static Board board;
     static Mark naught, cross;
-    static int animationIter;
+    static int statistics;
 
-    function void initialize() {
+    function void init() {
+        do Utils.init();
+
         let naught = Mark.new(1);
         let cross = Mark.new(1);
         return;
@@ -146,12 +148,12 @@ class Game {
             let randomValue = (randomValue * 2) + 1;
             let possibleMove = Game.inputToMove(randomValue);
 
-            if (board.isFree(possibleMove[0], possibleMove[1])) {
-                return possibleMove;
-            }
+        if (board.isFree(possibleMove[0], possibleMove[1])) {
+            return possibleMove; 
         }
+    }
 
-        return possibleMove; // фейковый костыль
+    return possibleMove; // фейковый костыль
     }
 
     function Array getBestMove(Mark mark) {
