@@ -63,6 +63,7 @@ class Board {
 		do Screen.drawRectangle(boardX,boardY,boardX+boardSize, boardY+boardSize);
 		do Screen.setColor(true);
 		do Memory.deAlloc(boardArray);
+        
 		return;
 	}
 
@@ -74,6 +75,7 @@ class Board {
 			let boardArray[i] = 0;
 			let i = i + 1;
 		}
+
 		return;
 	}
 
@@ -94,6 +96,7 @@ class Board {
         // Рисование горизонтальных линий
         do Screen.drawLine(0, 85, 511, 85);
         do Screen.drawLine(0, 170, 511, 170);
+
         return;
     }
 
@@ -103,6 +106,7 @@ class Board {
 		let y = (cellSize/2) + boardY + (row * cellSize); 
 		let displacement = finishLineThickness/2;
 		do Screen.drawRectangle(boardX, y - displacement, boardX + boardSize, y + displacement);
+
 		return; 
     }
 
@@ -111,6 +115,7 @@ class Board {
 		let x = (cellSize/2) + boardX + (col *cellSize);
 		let displacement = finishLineThickness/2;
 		do Screen.drawRectangle(x - displacement, boardY, x + displacement, boardY + boardSize);
+
 		return;
     }
 
@@ -128,6 +133,7 @@ class Board {
         do Screen.drawLine(x + i, y + boardSize, x + boardSize, y + i);
         let i = i - 1; 
     }
+
     return;
     }
 
@@ -144,6 +150,7 @@ class Board {
         do Screen.drawLine(x, y + i, x + boardSize - i, y + boardSize);
         let i = i - 1; // Уменьшаем счётчик
     }
+    
     return;
     }
 
@@ -170,6 +177,7 @@ class Board {
         // Устанавливаем тип фигуры (крестик или нолик) в указанной клетке
         let boardArray[posToIndex(row, col)] = p.getType();
         let emptyCellsCount = emptyCellsCount - 1;
+
         return;
     }
         // рисуем наш ход
@@ -181,6 +189,7 @@ class Board {
         let yt = boardY + (row * cellSize) + ((cellSize - p.getHeight()) / 2);
         // Отрисовываем фигуру на доске
         do p.drawMark(xl, yt);
+
         return;
     }
 
@@ -188,6 +197,7 @@ class Board {
     method void takeBackMove(int row, int col, Mark p) {
         let boardArray[posToIndex(row, col)] = 0;
         let emptyCellsCount = emptyCellsCount + 1;
+
         return;
     }
 
@@ -197,7 +207,10 @@ class Board {
 
     method Array getAvailableMoves() {
 		var Array moves;
-		var int r1,c1,counter;
+		var int r1;
+        var int c1;
+        var int counter;
+
 		let r1 = 0;
 		let c1 = 0;
 		let moves = Array.new(freeCellCount*2);
@@ -214,6 +227,7 @@ class Board {
 			}
 			let r1 = r1 + 1;
 		}
+
 		return moves;
 	}
 }
