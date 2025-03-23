@@ -1,13 +1,13 @@
 class Game {
     static Board board;
     static Mark naught, cross;
-    static int animationIter;
+    static int animateIter;
 
     function void init() {
         do Utils.init();
 
         let naught = Mark.new(1);
-        let cross = Mark.new(1);
+        let cross = Mark.new(2);
         return;
     }
 
@@ -172,7 +172,7 @@ class Game {
         let moveList = board.getMoves();
 
         while (i < moveCount) {
-            do Game.animation();
+            do Game.animate();
             do board.makeMove(moveList[i + i], moveList[i + i + 1], mark);
             let nextScore = Game.getMoveScore(mark);
             if (nextScore > currentScore) {
@@ -189,36 +189,36 @@ class Game {
         return bestMove;
     }
 
-    function void animation() {
+    function void animate() {
         var String s;
-        let animationIter = animationIter + 1;
+        let animateIter = animateIter + 1;
 
-        if (animationIter = 1) {
+        if (animateIter = 1) {
             do Utils.showMessage("In progress... /");
             return;
         }
-        if (animationIter = 100) {
+        if (animateIter = 100) {
             do Utils.showMessage("In progress... -");
             return;
         }
-        if (animationIter= 200) {
+        if (animateIter= 200) {
             do Utils.showMessage("In progress... |");
             return;
         }
-        if (animationIter= 300) {
+        if (animateIter= 300) {
             do Utils.showMessage("In progress... -");
             return;
         }
-        if (animationIter= 400) {
+        if (animateIter= 400) {
             do Utils.showMessage("In progress... \");
             return;
         }
-        if (animationIter= 500) {
+        if (animateIter= 500) {
             do Utils.showMessage("In progress... *");
             return;
         }
-        if (animationIter = 600) {
-            let animationIter = 0;
+        if (animateIter = 600) {
+            let animateIter = 0;
         }
         return;
     }
