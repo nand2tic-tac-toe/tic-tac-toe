@@ -124,7 +124,7 @@ class Game {
 
         let moves = Array.new(2);
 
-        if (board.getEmptyCellsCount() = 9) {
+        if (board.getEmptyCellsCount() = 8) {
             return Game.getGoodMove();
         } else {
             let movesWithScore = Game.getBestMove(mark);
